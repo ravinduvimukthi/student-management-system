@@ -79,4 +79,3 @@ Ravindu Vimukthi
 =======
 # student-management-system
 A Java console application for managing student records and learning Data Structures and Algorithms.
->>>>>>> b2cb3c13e103b7b854bf72b2ea9cedeb5bdeb5be
