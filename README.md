@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Student Management System
 
 A Java console application designed to manage student records and practise fundamental Data Structures and Algorithms (DSA).
