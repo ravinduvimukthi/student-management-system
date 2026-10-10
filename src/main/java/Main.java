@@ -23,17 +23,35 @@ public class Main {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Enter student ID");
-                    int id = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Enter student ID: ");
+                    int id;
+                    try{
+                        id = Integer.parseInt(scanner.nextLine());
 
-                    System.out.println("Enter student name");
+                    }catch(NumberFormatException e){
+                        System.out.println("Invalid ID. please enter a whole number.");
+                        break;
+                    }
+
+                    System.out.print("Enter student name: ");
                     String name = scanner.nextLine();
 
-                    System.out.println("Enter course: ");
+                    System.out.print("Enter course: ");
                     String course = scanner.nextLine();
 
                     System.out.print("Enter marks: ");
-                    double marks = Double.parseDouble(scanner.nextLine());
+                    double marks;
+                    try{
+                        marks=Double.parseDouble(scanner.nextLine());
+
+                    }catch (NumberFormatException e){
+                        System.out.println("Invalid marks.please enter a number");
+                        break;
+                    }
+
+                    if(marks<0 || marks>100){
+                        System.out.println("Invalid marks.Marks must be between 0 and 100");
+                    }
 
                     Student student = new Student(id, name, course, marks);
                     studentService.addStudent(student);
@@ -73,8 +91,18 @@ public class Main {
                     String newCourse = scanner.nextLine();
 
 
-                    System.out.println("Enter new marks: ");
-                    double newMarks = Double.parseDouble(scanner.nextLine());
+                    System.out.print("Enter new marks: ");
+                    double newMarks;
+                    try{
+                        newMarks=Double.parseDouble(scanner.nextLine());
+
+                    }catch (NumberFormatException e){
+                        System.out.println("Invalid marks.please enter a number");
+                        break;
+                    }
+                    if(newMarks<0 || newMarks>100){
+                        System.out.println("Invalid marks.Marks must be between 0 and 100");
+                    }
 
                     boolean updated = studentService.updateStudent(updateId, newName, newCourse, newMarks);
 
