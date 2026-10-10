@@ -27,6 +27,62 @@ public class StudentService {
 
         return null;
     }
+    public boolean updateStudent(int id,String name,String course,double marks){
+        Student student =findStudentById(id);
+        if(student == null){
+            return false;
+
+        }
+        student.setName(name);
+        student.setCourse(course);
+        student.setMarks(marks);
+
+        return true;
+    }
+
+    public boolean deleteStudent(int id){
+        Student student = findStudentById(id);
+        if(student == null){
+            return false;
+
+        }
+        students.remove(student);
+        return true;
+    }
+
+    public List<Student> sortStudentsByMarks() {
+        List<Student> sortedStudents = new ArrayList<>(students);
+
+        for (int i = 0; i < sortedStudents.size() - 1; i++) {
+            for (int j = 0; j < sortedStudents.size() - i - 1; j++) {
+                if (sortedStudents.get(j).getMarks()
+                        < sortedStudents.get(j + 1).getMarks()) {
+
+                    Student temp = sortedStudents.get(j);
+                    sortedStudents.set(j, sortedStudents.get(j + 1));
+                    sortedStudents.set(j + 1, temp);
+                }
+            }
+        }
+
+        return sortedStudents;
+    }
+
+    public double calculateAverageMarks() {
+        if (students.isEmpty()) {
+            return 0.0;
+        }
+
+        double total = 0.0;
+
+        for (Student student : students) {
+            total = total + student.getMarks();
+        }
+
+        return total / students.size();
+    }
+
+
     public void displayAllStudents(){
         if(students.isEmpty()){
             System.out.println("NO students found!");
@@ -40,5 +96,6 @@ public class StudentService {
             System.out.println("Marks: "+student.getMarks());
         }
     }
+
 
 }
