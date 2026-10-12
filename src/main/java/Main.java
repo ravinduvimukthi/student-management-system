@@ -4,6 +4,18 @@ public class Main {
     public static void main(String[] args){
         Scanner scanner =new Scanner(System.in);
         StudentService studentService = new StudentService();
+        StudentFileService fileService = new StudentFileService();
+
+        try {
+            studentService.loadStudents(fileService.loadStudents());
+             System.out.println("Student records loaded successfully.");
+      } catch (java.io.IOException e) {
+        System.out.println("Error loading student records: " + e.getMessage());
+}
+
+
+System.out.println("DEBUG: Loaded students = "
+        + studentService.getAllStudents().size());
 
         System.out.println("================================");
         System.out.println("  Student Management System");
@@ -34,10 +46,19 @@ public class Main {
                     }
 
                     System.out.print("Enter student name: ");
-                    String name = scanner.nextLine();
+                    String name = scanner.nextLine().trim();
+                    if(name.isEmpty()){
+                        System.out.println("Student name cannot be empty");
+                        break;
+                    }
 
                     System.out.print("Enter course: ");
-                    String course = scanner.nextLine();
+                    String course =scanner.nextLine().trim();
+
+                    if(course.isEmpty()){
+                        System.out.println("Course name cannot be empty.");
+                        break;
+                    }
 
                     System.out.print("Enter marks: ");
                     double marks;
@@ -55,6 +76,12 @@ public class Main {
 
                     Student student = new Student(id, name, course, marks);
                     studentService.addStudent(student);
+                    try {
+                          fileService.saveStudents(studentService.getAllStudents());
+                          System.out.println("Student records saved successfully.");
+                         } catch (java.io.IOException e) {
+                           System.out.println("Error saving student records: " + e.getMessage());
+                        }
                     break;
 
 
@@ -87,8 +114,13 @@ public class Main {
                     System.out.println("Enter new name: ");
                     String newName = scanner.nextLine();
 
-                    System.out.println("Enter new course: ");
-                    String newCourse = scanner.nextLine();
+                    System.out.print("Enter new course: ");
+                    String newCourse = scanner.nextLine().trim();
+
+                    if(newCourse.isEmpty()){
+                        System.out.println("Course name cannot be empty.");
+                        break;
+                    }
 
 
                     System.out.print("Enter new marks: ");
@@ -107,10 +139,29 @@ public class Main {
                     boolean updated = studentService.updateStudent(updateId, newName, newCourse, newMarks);
 
                     if (updated) {
-                        System.out.println("Student updated Successfully!");
+                        System.out.println("\n --Updated Student Details--");
+                        Student updateStudent =studentService.findStudentById(updateId);
+                        System.out.println("ID: "+updateStudent.getId() );
+                        System.out.println("Name: "+updateStudent.getName());
+                        System.out.println("Marks: "+updateStudent.getMarks());
 
-                    } else {
-                        System.out.println("Student not found");
+                        try{
+                            fileService.saveStudents(studentService.getAllStudents());
+                            System.out.println("Student records saved successfully");
+
+
+                        }catch (java.io.IOException e) {
+                            System.out.println("Error saving student records: " + e.getMessage());
+
+
+
+                        }
+
+
+
+                    } 
+                    else{
+                        System.out.println("Student not found!");
                     }
                     break;
 

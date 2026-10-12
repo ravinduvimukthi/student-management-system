@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class StudentService {
 
@@ -95,6 +95,10 @@ public class StudentService {
             System.out.println("course: "+student.getCourse());
             System.out.println("Marks: "+student.getMarks());
         }
+    }
+    public void loadStudents(List<Student> loadedStudents){
+        students.clear();
+        students.addAll(loadedStudents);
     }
 
 
