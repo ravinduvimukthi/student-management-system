@@ -1,31 +1,37 @@
-
 # Student Management System
 
-A Java console application for managing student records. This project demonstrates object-oriented programming, data structures, and basic algorithms using Java.
+A console-based Student Management System developed using Java. This project demonstrates core Java programming, object-oriented programming (OOP), data structures, searching, sorting, and file handling.
 
 ## Features
 
-- Add new students
-- Display all students
-- Search students by ID using Linear Search
-- Prevent duplicate student IDs
-- Update student details
-- Delete student records
-- Sort students by marks using Bubble Sort
-- Calculate average marks
+- **Add Students** — Add student records with ID, name, course, and marks.
+- **Display Students** — View all registered students.
+- **Search Students** — Find a student using their ID.
+- **Duplicate ID Prevention** — Prevent multiple students from having the same ID.
+- **Update Students** — Modify student details and display the updated record.
+- **Delete Students** — Remove a student using their ID.
+- **Sort by Marks** — Sort students by marks in descending order using Bubble Sort.
+- **Calculate Average Marks** — Calculate the average marks of all students.
+- **File Persistence** — Save student records in `students.txt` and load them when the application restarts.
+- **Input Validation** — Validate selected inputs to reduce invalid data entry.
 
 ## Technologies Used
 
-- Java 24
-- Maven
-- IntelliJ IDEA
+- Java
+- Apache Maven
 - Git and GitHub
+- Visual Studio Code
 
-## Data Structures and Algorithms
+## Concepts Demonstrated
 
-- **ArrayList:** Stores student records in memory.
-- **Linear Search:** Finds students by ID.
-- **Bubble Sort:** Sorts students from highest to lowest marks.
+- Object-Oriented Programming (OOP)
+- Classes, objects, constructors, and encapsulation
+- Java Collections Framework (`ArrayList`)
+- Linear Search
+- Bubble Sort
+- Exception handling
+- File handling using Java NIO
+- Build management with Maven
 
 ## Project Structure
 
@@ -34,41 +40,102 @@ student-management-system/
 ├── src/
 │   └── main/
 │       └── java/
-│           └── lk/
-│               └── ravindu/
-│                   ├── Main.java
-│                   ├── Student.java
-│                   └── StudentService.java
-├── .gitignore
+│           ├── Main.java
+│           ├── Student.java
+│           ├── StudentService.java
+│           └── StudentFileService.java
+├── students.txt
 ├── pom.xml
 └── README.md
 ```
 
-## How to Run
+**File descriptions:**
 
-1. Install JDK 24 or a compatible Java version.
-2. Clone this repository:
+- `Main.java` — Runs the menu-driven console application.
+- `Student.java` — Defines the student model and its properties.
+- `StudentService.java` — Handles student operations, searching, sorting, and average calculation.
+- `StudentFileService.java` — Saves student records to a file and loads them when the application starts.
+- `students.txt` — Stores student records locally.
+- `pom.xml` — Contains Maven project configuration.
 
-   ```bash
-   git clone https://github.com/ravinduvimukthi/student-management-system.git
-   ```
+## Prerequisites
 
-3. Open the project in IntelliJ IDEA.
-4. Load the Maven project.
-5. Run `Main.java`.
+Install the following before running the project:
 
-## Current Limitations
+- JDK 24
+- Apache Maven
+- Git (optional, for cloning the repository)
 
-- Student records are stored in memory and are lost when the program exits.
-- The application runs in the console.
-- Input validation can be improved.
+## Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ravinduvimukthi/student-management-system.git
+```
+
+### 2. Open the project directory
+
+```bash
+cd student-management-system
+```
+
+### 3. Build the project
+
+```bash
+mvn clean package
+```
+
+### 4. Run the application
+
+```bash
+java -cp target/classes Main
+```
+
+## Application Menu
+
+```text
+1. Add student
+2. Display all students
+3. Search student by ID
+4. Update Student
+5. Delete Student
+6. Sort Students by Marks
+7. Calculate Average Marks
+0. Exit
+```
+
+## Data Persistence
+
+Student records are stored in `students.txt`. When the application starts, it loads the saved records into the system.
+
+Each student record contains four lines:
+
+1. Student ID
+2. Student name
+3. Course
+4. Marks
+
+This allows student records to remain available after closing and reopening the application.
+
+**Note:** Keep `students.txt` in the working directory when running the application. Back up this file if you need to preserve your data.
 
 ## Future Improvements
 
-- Save student records to a file or database.
-- Improve input validation and error handling.
+- Improve validation for every user input.
+- Add a graphical user interface.
+- Introduce database integration using MySQL.
 - Add automated unit tests.
+- Improve file-data error handling.
 
 ## Author
 
-Ravindu Vimukthi
+**Ravindu Vimukthi**
+
+ICT Undergraduate | Aspiring Software Engineer
+
+GitHub: [@ravinduvimukthi](https://github.com/ravinduvimukthi)
+
+---
+
+This project is developed for learning and practising Java programming and software development fundamentals.
